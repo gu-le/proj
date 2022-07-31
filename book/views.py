@@ -3,15 +3,21 @@ from django.http import HttpResponse
 from .models import *
 from django.contrib.auth import login,logout,authenticate
 from .forms import *
- 
+from django.views.generic import ListView
+
 # Create your views here.
+class HomePage(ListView):
+    model = Book
+    template_name = 'book/templates/home.html'
+    
+
 def home(request):
     books=Book.objects.all()
     context={'books':books}
     if request.user.is_staff:
-        return render(request,'book/adminhome.html',context)
+        return render(request,'book/templates/adminhome.html',context)
     else:    
-        return render(request,'book/home.html',context)
+        return render(request,'book/templates/home.html',context)
  
 def logoutPage(request):
     logout(request)
@@ -30,7 +36,7 @@ def loginPage(request):
             login(request,user)
             return redirect('/')
        context={}
-       return render(request,'book/login.html',context)
+       return render(request,'book/templates/login.html',context)
  
 def registerPage(request):
     form=createuserform()
@@ -48,7 +54,7 @@ def registerPage(request):
         'form':form,
         'cust_form':cust_form,
     }
-    return render(request,'book/register.html',context)
+    return render(request,'book/templates/register.html',context)
  
 def addbook(request):
     form=createbookform()
@@ -59,7 +65,7 @@ def addbook(request):
         return redirect('/')
  
     context={'form':form}
-    return render(request,'book/addbook.html',context)
+    return render(request,'book/templates/addbook.html',context)
  
 def viewcart(request):
     cust=Customer.objects.filter(user=request.user)
@@ -70,9 +76,9 @@ def viewcart(request):
                 context={
                     'cart':cart
                 }
-                return render(request,'book/viewcart.html',context)  
+                return render(request,'book/templates/viewcart.html',context)  
         else:
-            return render(request,'book/emptycart.html') 
+            return render(request,'book/templates/emptycart.html') 
             
  
 def addtocart(request,pk):
