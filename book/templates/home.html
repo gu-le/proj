@@ -15,14 +15,19 @@
                     <th>Author</th>
                     <th>Price</th>
                     <th>Edition</th>
-                    <th></th>
+		    <th>Publisher</th>
+                    <th>Genre</th>
+		    <th>Image</th>
                 </tr>
                 {% for book in object_list %}
                 <tr>
-                    <td><b>{{book.title}}</b> </td>
-                    <td>{{book.Author}} </td>
-                    <td>{{book.Price}} </td>
+                    <td><b> {{book.title}} </b> </td>
+                    <td> {{book.Author}} </td>
+                    <td> {{book.Price}} </td>
                     <td> {{book.Edition}} </td>
+		    <td> {{book.Publisher}} </td>
+		    <td> {{book.Genre}} </td>
+		    <td> {{book.Image}} </td>
                     <td><a class="btn btn-sm btn-info" href="{% url 'addtocart' book.id %}">Add to cart</a> </td>
                 </tr>
                 {% endfor %}
