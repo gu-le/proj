@@ -14,13 +14,13 @@
             <img src="/media/{{ each.image_url }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ each.title|slice:":25"}} ...</h5>
-                <p class="card-text">${{ each.price|floatformat:2 }}</p>                
+                <p class="card-text">{{ each.price|floatformat:2 }} руб.</p>                
                 {% if each.book_available is True %}
-                <li class="text-primary">Available</li>
+                <li class="text-primary">Есть на складе</li>
                 {% else %}
-                <li class="text-danger">Out of Stock !</li>
+                <li class="text-danger">Нет на складе !</li>
                 {% endif %}<br>
-                <a href="{% url 'detail' each.id %}" class="btn btn-primary">View</a>
+                <a href="{% url 'detail' each.id %}" class="btn btn-primary">Подробнее...</a>
             </div>
         </div>
     </div>

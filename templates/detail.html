@@ -13,7 +13,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h4 class="card-title">{{ object.title }}</h4>
-          <p class="card-text">Author: {{ object.author }}</p><hr>
+          <p class="card-text">Автор: {{ object.author }}</p><hr>
           <p class="card-text">{{ object.description }}</p>
         </div>
       </div>
@@ -21,12 +21,12 @@
   </div>
 
 <!-- <p>Follow Author: </p> -->
-<p><a href="{{ object.follow_author }}">Follow Author</a> </p>
-<p>Price: $ {{ object.price|floatformat:2 }}</p>
+<p><a href="{{ object.follow_author }}">отсортировать по автору</a> </p>
+<p>Цена:{{ object.price|floatformat:2 }} руб.</p>
 
 
 {% if object.book_available is True %}
-<a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button">Buy Now</a>
+<a href="{% url 'checkout' object.pk %}" class="btn btn-outline-success" role="button">Корзина</a>
 {% else %}
 <h4 class="text-danger">Out of Stock !</h4>
 {% endif %}
