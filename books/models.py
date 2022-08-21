@@ -10,6 +10,8 @@ class Book(models.Model):
     image_url = models.ImageField(blank=True, upload_to='book_images')
     follow_author = models.CharField(max_length=2083, blank=True)  
     book_available = models.BooleanField(default=False)
+    book_is_new        = models.BooleanField(default=True)
+    book_is_bestseller = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
